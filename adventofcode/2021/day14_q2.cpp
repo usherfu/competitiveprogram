@@ -53,6 +53,7 @@ int main()
     cin >> t; 
 
     //这道题的思路不是把最终的字符串建造出来，而是直接计数 pair的个数。
+    // reference https://github.com/welguisz/advent-of-code/blob/main/src/com/dwelguisz/year2021/AdventDay14.java
     // read rule: the rule has been transformed into following format:
     /*
     CH -> B  becomes CH -> [CB, BH]

@@ -8,3 +8,7 @@
 - https://zhuanlan.zhihu.com/p/27692913
 - https://github.com/qincaicai/acm/
 - https://github.com/AlanYume/ACM-ICPC
+
+学习KMP算法 https://www.geeksforgeeks.org/frequency-substring-string/  https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
+
+https://codeforces.com/blog/entry/93712
