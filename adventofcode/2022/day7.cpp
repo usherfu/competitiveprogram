@@ -41,22 +41,22 @@ template<class T> void chmax(T & a, const T & b) { a = max(a, b); }
 template<class T> void chmin(T & a, const T & b) { a = min(a, b); } 
 ///////////////////////////////////////////////////////////////////// 
 
-void solution1();
+void solution();
 void dumpFS(treenode * cur, int indent);
-int foldersize(treenode* cur, vector<int> &dirSize);
-int totalSize = 0;
+int foldersize(treenode* cur, vector<int> &dirSize, int &sizeOfAtMost100000);
+
 int main() 
 { 
  
     ios::sync_with_stdio(0); //make io more efficient
     cin.tie(0);
 
-    solution1();
+    solution();
 
     return 0; 
 } 
 
-void solution1(){
+void solution(){
 
     std:ifstream infile("day7.txt");
     string line;
@@ -94,9 +94,10 @@ void solution1(){
 
     dumpFS(head, 0);
     // calculate size
+    int sizeOfAtMost100000 = 0;
     vector<int> dirSize;
-    int rootSize = foldersize(head, dirSize);
-    cout << "Part 1: total size of all directories that each is less than 100000: " << totalSize << endl;
+    int rootSize = foldersize(head, dirSize, sizeOfAtMost100000);
+    cout << "Part 1: total size of all directories each of which is less than 100000: " << sizeOfAtMost100000 << endl;
 
     int requireSpace = 30000000 - (70000000 - rootSize);
     int tobeDeleted = rootSize;
@@ -125,7 +126,7 @@ void dumpFS(treenode * cur, int indent){
     }
     
 }
-int foldersize(treenode* cur, vector<int> &dirSize){
+int foldersize(treenode* cur, vector<int> &dirSize, int &sizeOfAtMost100000){
     if(cur == nullptr)
         return 0;
     int size = 0;
@@ -133,14 +134,14 @@ int foldersize(treenode* cur, vector<int> &dirSize){
         if(e->type == treenode::NodeType::FILE){
             size += e->filesize;
         }else{
-            size += foldersize(e, dirSize);
+            size += foldersize(e, dirSize, sizeOfAtMost100000);
         }
     }
     cout << "folder: " << cur->name << " " << size << endl;
     dirSize.push_back(size);
 
     if(size <= 100000){
-        totalSize += size;
+        sizeOfAtMost100000 += size;
     }
     return size;
 }
